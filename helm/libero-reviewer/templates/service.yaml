@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "libero-reviewer.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "libero-reviewer.name" . }}
+    helm.sh/chart: {{ include "libero-reviewer.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  type: LoadBalancer
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: {{ include "libero-reviewer.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}

@@ -9,6 +9,8 @@ images:
   pullPolicy: Always
   server:
     repository: liberoadmin/reviewer_server
+  client:
+    repository: liberoadmin/reviewer_client
 
 nameOverride: ""
 fullnameOverride: ""

@@ -1,23 +1,26 @@
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: {{ include "libero-reviewer.fullname" . }}
+  name: {{ include "libero-reviewer.fullname" . }}-server
   labels:
     app.kubernetes.io/name: {{ include "libero-reviewer.name" . }}
     helm.sh/chart: {{ include "libero-reviewer.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/component: server
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ include "libero-reviewer.name" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/component: server
   template:
     metadata:
       labels:
         app.kubernetes.io/name: {{ include "libero-reviewer.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/component: server
     spec:
       containers:
         - name: {{ .Chart.Name }}-server

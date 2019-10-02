@@ -3,7 +3,10 @@ kind: Service
 metadata:
   name: {{ include "libero-reviewer.fullname" . }}-client
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: {{ include "libero-reviewer.fullname" . }}.elifesciences.net
+    external-dns.alpha.kubernetes.io/hostname: {{ include "libero-reviewer.fullname" . }}.elifesciences.org
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: {{ .Values.clientCertificate }}
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
   labels:
     app.kubernetes.io/name: {{ include "libero-reviewer.name" . }}
     helm.sh/chart: {{ include "libero-reviewer.chart" . }}
@@ -17,6 +20,10 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+    - name: https
+      port: 443
+      protocol: TCP
+      targetPort: http
   selector:
     app.kubernetes.io/name: {{ include "libero-reviewer.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}

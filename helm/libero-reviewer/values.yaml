@@ -9,6 +9,10 @@ images:
   pullPolicy: Always
   server:
     repository: liberoadmin/reviewer_server
+  client:
+    repository: liberoadmin/reviewer_client
+
+clientCertificate: "arn:aws:iam::512686554592:server-certificate/cloudfront/wildcard.elifesciences.org/2019.wildcard.elifesciences.org"
 
 nameOverride: ""
 fullnameOverride: ""

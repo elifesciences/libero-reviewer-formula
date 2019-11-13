@@ -18,7 +18,7 @@ data:
         listen 9000;
 
         location /graphql {
-          proxy_pass http://{{ include "libero-reviewer.fullname" . }}-server:3000;
+          proxy_pass http://{{ include "libero-reviewer.fullname" . }}-submission:3000;
         }
 
         location / {

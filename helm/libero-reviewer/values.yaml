@@ -7,8 +7,8 @@ replicaCount: 1
 images:
   tag: latest
   pullPolicy: Always
-  server:
-    repository: liberoadmin/reviewer_server
+  submission:
+    repository: liberoadmin/reviewer-submission
   client:
     repository: liberoadmin/reviewer-client
   continuumAuth:

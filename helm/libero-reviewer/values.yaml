@@ -31,6 +31,12 @@ postgresql:
   postgresqlDatabase: "postgres"
   postgresqlPassword: "change_this_password_or_else"
 
+rabbitmq:
+  image:
+    tag: "3.8.1-ol-7-r13"
+  persistence:
+    enabled: false
+
 # todo, set this to proper values
 continuumLogin:
   url: "http://localhost"

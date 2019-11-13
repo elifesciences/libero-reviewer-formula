@@ -22,16 +22,21 @@ Note: Change the 'libero-reviewer--test' to your chosen release name
 To deploy a new release:
 
 ```sh
-helm install libero-reviewer--test ./helm/libero-reviewer
+helm install --name libero-reviewer--test ./helm/libero-reviewer
 ```
 
-Update a release
+Update a release:
 
 ```sh
 helm upgrade libero-reviewer--test ./helm/libero-reviewer
 ```
 
-Delete a release
+Get the status:
+```
+helm status libero-reviewer--test
+```
+
+Delete a release:
 
 ```sh
 helm del --purge libero-reviewer--test

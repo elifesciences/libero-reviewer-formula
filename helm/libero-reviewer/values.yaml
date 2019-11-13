@@ -10,7 +10,7 @@ images:
   server:
     repository: liberoadmin/reviewer_server
   client:
-    repository: liberoadmin/reviewer_client
+    repository: liberoadmin/reviewer-client
   continuumAuth:
     repository: liberoadmin/continuum-auth
 

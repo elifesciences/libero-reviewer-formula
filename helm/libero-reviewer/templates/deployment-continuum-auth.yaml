@@ -34,7 +34,11 @@ spec:
             - name: CONTINUUM_LOGIN_PORT
               value: "{{ .Values.continuumLogin.port }}"
             - name: CONTINUUM_LOGIN_JWT_SECRET
-              value: "{{ .Values.continuumLogin.secret }}"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "libero-reviewer.fullname" . }}
+                  key: jwtSecret
+                  optional: true
           ports:
             - name: http
               containerPort: {{ .Values.continuumAuth.port }}

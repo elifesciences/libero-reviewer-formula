@@ -17,27 +17,51 @@ helm dependency build ./helm/libero-reviewer
 
 ## Operate
 
-Note: Change the 'libero-reviewer--test' to your chosen release name
+Note: Change the 'libero-reviewer--staging' to your chosen release name
 
 To deploy a new release:
 
 ```sh
-helm install --name libero-reviewer--test ./helm/libero-reviewer
+helm install --name libero-reviewer--staging ./helm/libero-reviewer -f environments/staging.yaml
 ```
 
 Update a release:
 
 ```sh
-helm upgrade libero-reviewer--test ./helm/libero-reviewer
+helm upgrade libero-reviewer--staging ./helm/libero-reviewer -f environments/staging.yaml
 ```
 
 Get the status:
 ```
-helm status libero-reviewer--test
+helm status libero-reviewer--staging
 ```
 
 Delete a release:
 
 ```sh
-helm del --purge libero-reviewer--test
+helm del --purge libero-reviewer--staging
 ```
+
+## Secrets
+
+Temporary: change this once we have vault integration
+
+Create a secret by creating a yaml file (not to be added to repo for obvious reasons):
+
+secrets.yaml
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: libero-reviewer--staging
+type: Opaque
+stringData:
+  jwtSecret: "some_random_value"
+```
+
+Then run:
+```sh
+kubectl apply -f secrets.yaml
+```
+
+Update the release.

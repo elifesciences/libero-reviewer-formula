@@ -41,7 +41,6 @@ rabbitmq:
 continuumLogin:
   url: "http://localhost"
   port: 3003
-  jwt_secret: "some_secret_from_journal"
 
 continuumAuth:
   port: 3001

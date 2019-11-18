@@ -32,12 +32,11 @@ helm upgrade libero-reviewer--staging ./helm/libero-reviewer -f environments/sta
 ```
 
 Get the status:
-```
+```sh
 helm status libero-reviewer--staging
 ```
 
 Delete a release:
-
 ```sh
 helm del --purge libero-reviewer--staging
 ```

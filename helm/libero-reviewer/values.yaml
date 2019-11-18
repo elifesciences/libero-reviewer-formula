@@ -40,7 +40,6 @@ rabbitmq:
 # todo, set this to proper values
 continuumLogin:
   url: "http://localhost"
-  port: 3003
 
 continuumAuth:
   port: 3001

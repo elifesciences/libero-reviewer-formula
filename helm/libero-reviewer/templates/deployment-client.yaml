@@ -29,16 +29,12 @@ spec:
           env:
             - name: CLIENT_PORT
               value: "9000"
-            - name: SERVER_PORT
-              value: "3000"
             - name: CLIENT_API_URL
               value: "https://{{ include "libero-reviewer.fullname" . }}.elifesciences.org"
             - name: CLIENT_API_PROXY_URL
               value: "https://{{ include "libero-reviewer.fullname" . }}-submission"
             - name: CONTINUUM_LOGIN_URL
               value: "{{ .Values.continuumLogin.url }}"
-            - name: CONTINUUM_LOGIN_PORT
-              value: "{{ .Values.continuumLogin.port }}"
           ports:
             - name: http
               containerPort: 9000

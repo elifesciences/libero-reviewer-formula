@@ -31,8 +31,6 @@ spec:
               value: "{{ .Release.Name }}-rabbitmq"
             - name: CONTINUUM_LOGIN_URL
               value: "{{ .Values.continuumLogin.url }}"
-            - name: CONTINUUM_LOGIN_PORT
-              value: "{{ .Values.continuumLogin.port }}"
             - name: CONTINUUM_LOGIN_JWT_SECRET
               valueFrom:
                 secretKeyRef:

@@ -1,6 +1,5 @@
 continuumLogin:
-  url: "https://continuumtest--cdn-journal.elifesciences.org"
-  port: 443
+  url: "https://continuumtest--cdn-journal.elifesciences.org/submit"
 
 continuumAuth:
   port: 3001

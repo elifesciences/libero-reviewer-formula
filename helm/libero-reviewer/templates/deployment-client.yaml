@@ -33,6 +33,8 @@ spec:
               value: "https://{{ include "libero-reviewer.fullname" . }}.elifesciences.org"
             - name: CLIENT_API_PROXY_URL
               value: "https://{{ include "libero-reviewer.fullname" . }}-submission"
+            - name: CLIENT_AUTH_PROXY_URL
+              value: "https://{{ include "libero-reviewer.fullname" . }}-continuum-auth"
             - name: CONTINUUM_LOGIN_URL
               value: "{{ .Values.continuumLogin.url }}"
           ports:

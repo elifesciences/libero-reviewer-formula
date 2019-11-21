@@ -31,6 +31,14 @@ spec:
               value: "{{ .Release.Name }}-rabbitmq"
             - name: CONTINUUM_LOGIN_URL
               value: "{{ .Values.continuumLogin.url }}"
+            - name: AUTHENTICATED_REDIRECT_URL
+              value: "https://{{ include "libero-reviewer.fullname" . }}.elifesciences.org/auth"
+            - name: AUTHENTICATION_JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "libero-reviewer.fullname" . }}
+                  key: liberoJwtSecret
+                  optional: true
             - name: CONTINUUM_LOGIN_JWT_SECRET
               valueFrom:
                 secretKeyRef:

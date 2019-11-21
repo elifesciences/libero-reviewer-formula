@@ -43,7 +43,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ include "libero-reviewer.fullname" . }}
-                  key: jwtSecret
+                  key: journalJwtSecret
                   optional: true
           ports:
             - name: http

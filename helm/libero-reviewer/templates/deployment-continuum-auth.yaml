@@ -37,13 +37,13 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ include "libero-reviewer.fullname" . }}
-                  key: liberoJwtSecret
+                  key: authenticationJwtSecret
                   optional: true
             - name: CONTINUUM_LOGIN_JWT_SECRET
               valueFrom:
                 secretKeyRef:
                   name: {{ include "libero-reviewer.fullname" . }}
-                  key: journalJwtSecret
+                  key: continuumJwtSecret
                   optional: true
           ports:
             - name: http

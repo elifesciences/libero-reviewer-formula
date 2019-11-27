@@ -26,21 +26,6 @@ spec:
         - name: {{ .Chart.Name }}-submission
           image: "{{ .Values.images.submission.repository }}:{{ .Values.images.tag }}"
           imagePullPolicy: {{ .Values.images.pullPolicy }}
-          env:
-            - name: DB_HOST
-              value: "{{ .Release.Name }}-postgresql"
-            - name: DB_DATABASE
-              value: "{{ .Values.postgresql.postgresqlDatabase }}"
-            - name: DB_USERNAME
-              value: "{{ .Values.postgresql.postgresqlUsername }}"
-            - name: DB_PASSWORD
-              value: "{{ .Values.postgresql.postgresqlPassword }}"
-            - name: DB_TYPE
-              value: "postgres"
-            - name: DB_PORT
-              value: "{{ .Values.postgresql.service.port }}"
-            - name: SERVER_PORT
-              value: "3000" # this should be hardcoded in the container
           ports:
             - name: http
               containerPort: 3000
@@ -53,3 +38,10 @@ spec:
             httpGet:
               path: /health
               port: http
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/reviewer
+      volumes:
+        - name: config-volume
+          configMap:
+            name: {{ include "libero-reviewer.fullname" . }}-submission

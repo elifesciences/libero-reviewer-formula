@@ -43,3 +43,4 @@ continuumLogin:
 
 continuumAuth:
   port: 3001
+  continuumApiUrl: "http://continuum.gateway.url"

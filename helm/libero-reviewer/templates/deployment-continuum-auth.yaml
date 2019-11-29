@@ -32,7 +32,9 @@ spec:
             - name: CONTINUUM_LOGIN_URL
               value: "{{ .Values.continuumLogin.url }}"
             - name: AUTHENTICATED_REDIRECT_URL
-              value: "https://{{ include "libero-reviewer.fullname" . }}.elifesciences.org/auth"
+              value: "https://{{ include "libero-reviewer.fullname" . }}.elifesciences.org/login"
+            - name: CONTINUUM_API_URL
+              value: "{{ .Values.continuumAuth.continuumApiUrl }}"
             - name: AUTHENTICATION_JWT_SECRET
               valueFrom:
                 secretKeyRef:

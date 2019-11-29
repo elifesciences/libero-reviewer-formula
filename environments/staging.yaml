@@ -3,4 +3,4 @@ continuumLogin:
 
 continuumAuth:
   port: 3001
-  continuumApiUrl: "https://continuumtest--gateway.elifesciences.org"
+  continuumApiUrl: "http://continuumtest--gateway.elife.internal"

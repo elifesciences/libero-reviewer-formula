@@ -34,7 +34,7 @@ spec:
             - name: CLIENT_API_PROXY_URL
               value: "http://{{ include "libero-reviewer.fullname" . }}-submission:3000/graphql"
             - name: CLIENT_AUTH_PROXY_URL
-              value: "http://{{ include "libero-reviewer.fullname" . }}-continuum-auth:{{ .Values.continuumAuth.port }}/authenticate/"
+              value: "http://{{ include "libero-reviewer.fullname" . }}-continuum-adaptor:{{ .Values.continuumAdaptor.port }}/authenticate/"
             - name: CONTINUUM_LOGIN_URL
               value: "{{ .Values.continuumLogin.url }}"
           ports:

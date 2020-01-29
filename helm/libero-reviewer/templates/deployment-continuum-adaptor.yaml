@@ -1,30 +1,30 @@
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: {{ include "libero-reviewer.fullname" . }}-continuum-auth
+  name: {{ include "libero-reviewer.fullname" . }}-continuum-adaptor
   labels:
     app.kubernetes.io/name: {{ include "libero-reviewer.name" . }}
     helm.sh/chart: {{ include "libero-reviewer.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
-    app.kubernetes.io/component: continuum-auth
+    app.kubernetes.io/component: continuum-adaptor
 spec:
   replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ include "libero-reviewer.name" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
-      app.kubernetes.io/component: continuum-auth
+      app.kubernetes.io/component: continuum-adaptor
   template:
     metadata:
       labels:
         app.kubernetes.io/name: {{ include "libero-reviewer.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
-        app.kubernetes.io/component: continuum-auth
+        app.kubernetes.io/component: continuum-adaptor
     spec:
       containers:
-        - name: {{ .Chart.Name }}-continuum-auth
-          image: "{{ .Values.images.continuumAuth.repository }}:{{ .Values.images.tag }}"
+        - name: {{ .Chart.Name }}-continuum-adaptor
+          image: "{{ .Values.images.continuumAdaptor.repository }}:{{ .Values.images.tag }}"
           imagePullPolicy: {{ .Values.images.pullPolicy }}
           env:
             - name: RABBITMQ_URL
@@ -34,7 +34,7 @@ spec:
             - name: AUTHENTICATED_REDIRECT_URL
               value: "https://{{ include "libero-reviewer.fullname" . }}.elifesciences.org/login"
             - name: CONTINUUM_API_URL
-              value: "{{ .Values.continuumAuth.continuumApiUrl }}"
+              value: "{{ .Values.continuumAdaptor.continuumApiUrl }}"
             - name: AUTHENTICATION_JWT_SECRET
               valueFrom:
                 secretKeyRef:
@@ -49,7 +49,7 @@ spec:
                   optional: true
           ports:
             - name: http
-              containerPort: {{ .Values.continuumAuth.port }}
+              containerPort: {{ .Values.continuumAdaptor.port }}
               protocol: TCP
 
 

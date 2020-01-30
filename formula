@@ -1,6 +1,13 @@
 #!/bin/bash
 set -e
 
+if [ "$#" -ne 2 ]; then
+    echo "Usage:"
+    echo "./formula install|upgrade|status <env>";
+    exit 1
+fi
+
+
 if [ "$1" == "install" ];
 then
     secrets=$(kubectl get secret libero-reviewer--$2 -o json);
@@ -23,4 +30,9 @@ then
     helm upgrade libero-reviewer--$2 ./helm/libero-reviewer -f environments/$2.yaml --set \
 continuumAdaptor.continuumJwtSecret="$continuumJwtSecret",\
 continuumAdaptor.authenticationJwtSecret="$authenticationJwtSecret";
+fi
+
+if [ "$1" == "status" ];
+then
+    helm status libero-reviewer--$2
 fi

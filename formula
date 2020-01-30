@@ -1,0 +1,26 @@
+#!/bin/bash
+set -e
+
+if [ "$1" == "install" ];
+then
+    secrets=$(kubectl get secret libero-reviewer--$2 -o json);
+    continuumJwtSecret=$(echo $secrets | jq -r .data.continuumJwtSecret | base64 -d);
+    authenticationJwtSecret=$(echo $secrets | jq -r .data.authenticationJwtSecret | base64 -d);
+
+    echo "installing $2 release";
+    helm install --name libero-reviewer--$2 ./helm/libero-reviewer -f environments/$2.yaml --set \
+continuumAdaptor.continuumJwtSecret="$continuumJwtSecret",\
+continuumAdaptor.authenticationJwtSecret="$authenticationJwtSecret";
+fi
+
+if [ "$1" == "upgrade" ];
+then
+    secrets=$(kubectl get secret libero-reviewer--$2 -o json);
+    continuumJwtSecret=$(echo $secrets | jq -r .data.continuumJwtSecret | base64 -d);
+    authenticationJwtSecret=$(echo $secrets | jq -r .data.authenticationJwtSecret | base64 -d);
+
+    echo "upgrading $2 release";
+    helm upgrade libero-reviewer--$2 ./helm/libero-reviewer -f environments/$2.yaml --set \
+continuumAdaptor.continuumJwtSecret="$continuumJwtSecret",\
+continuumAdaptor.authenticationJwtSecret="$authenticationJwtSecret";
+fi

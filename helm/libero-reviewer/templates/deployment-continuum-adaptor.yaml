@@ -26,31 +26,15 @@ spec:
         - name: {{ .Chart.Name }}-continuum-adaptor
           image: "{{ .Values.images.continuumAdaptor.repository }}:{{ .Values.images.tag }}"
           imagePullPolicy: {{ .Values.images.pullPolicy }}
-          env:
-            - name: RABBITMQ_URL
-              value: "{{ .Release.Name }}-rabbitmq"
-            - name: CONTINUUM_LOGIN_URL
-              value: "{{ .Values.continuumLogin.url }}"
-            - name: AUTHENTICATED_REDIRECT_URL
-              value: "https://{{ include "libero-reviewer.fullname" . }}.elifesciences.org/login"
-            - name: CONTINUUM_API_URL
-              value: "{{ .Values.continuumAdaptor.continuumApiUrl }}"
-            - name: AUTHENTICATION_JWT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: {{ include "libero-reviewer.fullname" . }}
-                  key: authenticationJwtSecret
-                  optional: true
-            - name: CONTINUUM_LOGIN_JWT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: {{ include "libero-reviewer.fullname" . }}
-                  key: continuumJwtSecret
-                  optional: true
           ports:
             - name: http
               containerPort: {{ .Values.continuumAdaptor.port }}
               protocol: TCP
+      volumes:
+        - name: config-volume
+          configMap:
+            name: {{ include "libero-reviewer.fullname" . }}-continuum-adaptor
+        
 
 
 

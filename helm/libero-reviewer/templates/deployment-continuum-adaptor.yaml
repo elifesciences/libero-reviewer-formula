@@ -30,6 +30,9 @@ spec:
             - name: http
               containerPort: {{ .Values.continuumAdaptor.port }}
               protocol: TCP
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/reviewer
       volumes:
         - name: config-volume
           configMap:

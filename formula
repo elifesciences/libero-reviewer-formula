@@ -3,8 +3,18 @@ set -e
 
 function usage {
     echo "Usage:";
-    echo "./formula install|upgrade|status <env>";
+    echo "./formula help:                 Show this help";
+    echo "./formula install <env>:        Install a new helm release";
+    echo "./formula upgrade <env>:        Install a new helm release";
+    echo "./formula status <env>:         Install a new helm release";
+    echo "./formula delete <env>:         Install a new helm release";
 }
+
+if [ "$1" == "help" ];
+then
+    usage
+    exit;
+fi
 
 if [ "$#" -ne 2 ];
 then

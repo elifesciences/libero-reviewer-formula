@@ -4,4 +4,8 @@ elifePipeline {
         checkout scm
         commit = elifeGitRevision()
     }
+
+    stage "Deploy to staging", {
+        sh "./formula update staging"
+    }
 }

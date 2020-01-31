@@ -1,38 +1,45 @@
 #!/bin/bash
 set -e
 
-if [ "$#" -ne 2 ]; then
-    usage;
-    exit 1
-fi
-
 function usage {
-    echo "Usage:"
+    echo "Usage:";
     echo "./formula install|upgrade|status <env>";
 }
 
+if [ "$#" -ne 2 ];
+then
+    usage;
+    exit 1;
+fi
 
-if [ "$1" == "install" ] | [ "$1" == "upgrade" ];
+if [ "$1" == "install" ] || [ "$1" == "upgrade" ];
 then
     secrets=$(kubectl get secret libero-reviewer--$2 -o json);
     continuumJwtSecret=$(echo $secrets | jq -r .data.continuumJwtSecret | base64 -d);
     authenticationJwtSecret=$(echo $secrets | jq -r .data.authenticationJwtSecret | base64 -d);
 
-    if [ "$1" == "install"]; then
+    if [ "$1" == "install" ]; then
         echo "installing $2 release";
     else
         echo "upgrade $2 release";
     fi
 
-    helm upgrade --install --name libero-reviewer--$2 ./helm/libero-reviewer -f environments/$2.yaml --set \
+    helm upgrade --install libero-reviewer--$2 ./helm/libero-reviewer -f environments/$2.yaml --set \
 continuumAdaptor.continuumJwtSecret="$continuumJwtSecret",\
 continuumAdaptor.authenticationJwtSecret="$authenticationJwtSecret";
-exit;
+    exit;
 fi
 
 if [ "$1" == "status" ];
 then
-    helm status libero-reviewer--$2
+    helm status libero-reviewer--$2;
+    exit;
+fi
+
+if [ "$1" == "delete" ];
+then
+    helm del --purge libero-reviewer--$2;
+    exit;
 fi
 
 usage;

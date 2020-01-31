@@ -6,6 +6,6 @@ elifePipeline {
     }
 
     stage "Deploy to staging", {
-        sh "./formula update staging"
+        sh "./formula upgrade staging"
     }
 }

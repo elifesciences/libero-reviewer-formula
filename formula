@@ -56,3 +56,4 @@ then
 fi
 
 usage;
+exit 1;

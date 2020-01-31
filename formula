@@ -36,7 +36,10 @@ then
         echo "upgrade $2 release";
     fi
 
-    helm upgrade $installFlag libero-reviewer--$2 ./helm/libero-reviewer -f environments/$2.yaml --set \
+    helm upgrade $installFlag libero-reviewer--$2 ./helm/libero-reviewer -f environments/$2.yaml
+--wait \
+--timeout 60 \
+--set \
 continuumAdaptor.continuumJwtSecret="$continuumJwtSecret",\
 continuumAdaptor.authenticationJwtSecret="$authenticationJwtSecret";
 

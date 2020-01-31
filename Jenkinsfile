@@ -10,6 +10,6 @@ elifePipeline {
     }
 
     stage 'Deploy to staging', {
-        sh "./formula upgrade staging -- --wait --timeout 60"
+        sh "./formula upgrade staging"
     }
 }

@@ -26,18 +26,14 @@ spec:
         - name: {{ .Chart.Name }}-client
           image: "{{ .Values.images.client.repository }}:{{ .Values.images.tag }}"
           imagePullPolicy: {{ .Values.images.pullPolicy }}
-          env:
-            - name: CLIENT_PORT
-              value: "9000"
-            - name: CLIENT_API_URL
-              value: "https://{{ include "libero-reviewer.fullname" . }}.elifesciences.org"
-            - name: CLIENT_API_PROXY_URL
-              value: "http://{{ include "libero-reviewer.fullname" . }}-submission:3000/graphql"
-            - name: CLIENT_AUTH_PROXY_URL
-              value: "http://{{ include "libero-reviewer.fullname" . }}-continuum-adaptor:{{ .Values.continuumAdaptor.port }}/authenticate/"
-            - name: CONTINUUM_LOGIN_URL
-              value: "{{ .Values.continuumLogin.url }}"
           ports:
             - name: http
               containerPort: 9000
               protocol: TCP
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/reviewer
+      volumes:
+        - name: config-volume
+          configMap:
+            name: {{ include "libero-reviewer.fullname" . }}-client

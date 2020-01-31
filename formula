@@ -27,16 +27,19 @@ then
     secrets=$(kubectl get secret libero-reviewer--$2 -o json);
     continuumJwtSecret=$(echo $secrets | jq -r .data.continuumJwtSecret | base64 -d);
     authenticationJwtSecret=$(echo $secrets | jq -r .data.authenticationJwtSecret | base64 -d);
+    installFlag=""
 
     if [ "$1" == "install" ]; then
         echo "installing $2 release";
+        installFlag=" --install"
     else
         echo "upgrade $2 release";
     fi
 
-    helm upgrade --install libero-reviewer--$2 ./helm/libero-reviewer -f environments/$2.yaml --set \
+    helm upgrade $installFlag libero-reviewer--$2 ./helm/libero-reviewer -f environments/$2.yaml --set \
 continuumAdaptor.continuumJwtSecret="$continuumJwtSecret",\
 continuumAdaptor.authenticationJwtSecret="$authenticationJwtSecret";
+
     exit;
 fi
 

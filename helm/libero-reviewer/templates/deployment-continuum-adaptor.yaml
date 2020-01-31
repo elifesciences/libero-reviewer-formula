@@ -33,6 +33,14 @@ spec:
           volumeMounts:
             - name: config-volume
               mountPath: /etc/reviewer
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
       volumes:
         - name: config-volume
           configMap:

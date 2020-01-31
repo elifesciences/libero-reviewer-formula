@@ -29,16 +29,16 @@ then
     authenticationJwtSecret=$(echo $secrets | jq -r .data.authenticationJwtSecret | base64 -d);
     installFlag=""
 
-    if [ "$1" == "install" ]; then
-        echo "installing $2 release";
-        installFlag=" --install"
-    else
-        echo "upgrade $2 release";
-    fi
+    # if [ "$1" == "install" ]; then
+    #     echo "installing $2 release";
+    #     installFlag=" --install"
+    # else
+    #     echo "upgrade $2 release";
+    # fi
 
-    helm upgrade $installFlag libero-reviewer--$2 ./helm/libero-reviewer -f environments/$2.yaml
+    helm upgrade --install libero-reviewer--$2 ./helm/libero-reviewer -f environments/$2.yaml \
 --wait \
---timeout 60 \
+--timeout 120 \
 --set \
 continuumAdaptor.continuumJwtSecret="$continuumJwtSecret",\
 continuumAdaptor.authenticationJwtSecret="$authenticationJwtSecret";

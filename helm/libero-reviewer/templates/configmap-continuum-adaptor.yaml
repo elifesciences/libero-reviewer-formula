@@ -20,10 +20,10 @@ data:
         "knex": {
             "client": "pg",
             "connection": {
-                "host": "postgres",
-                "database": "reviewer_continuum_adaptor",
-                "user": "postgres",
-                "password": "postgres",
+                "host": "{{ include "libero-reviewer.fullname" . }}-postgresql",
+                "username": "{{ .Values.postgresql.postgresqlUsername }}",
+                "database": "{{ .Values.postgresql.postgresqlDatabase }}",
+                "password": "{{ .Values.postgresql.postgresqlPassword }}",
                 "port": 5432
             }
         }

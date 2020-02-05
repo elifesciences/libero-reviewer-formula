@@ -13,6 +13,8 @@ images:
     repository: liberoadmin/reviewer-client
   continuumAdaptor:
     repository: liberoadmin/continuum-adaptor
+  audit:
+    repository: liberoadmin/audit
 
 clientCertificate: "arn:aws:iam::512686554592:server-certificate/cloudfront/wildcard.elifesciences.org/2019.wildcard.elifesciences.org"
 

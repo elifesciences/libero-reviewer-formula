@@ -11,7 +11,7 @@ data:
   config.public.json: |
     {
         "client_login_url": "https://{{ include "libero-reviewer.fullname" . }}.elifesciences.org/submit",
-        "client_api_url": "https://{{ include "libero-reviewer.fullname" . }}-submission
+        "client_api_url": "https://{{ include "libero-reviewer.fullname" . }}.elifesciences.org"
     }
   config.infra.json: |
     {

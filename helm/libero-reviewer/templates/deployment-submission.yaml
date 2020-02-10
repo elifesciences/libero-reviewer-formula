@@ -41,6 +41,21 @@ spec:
           volumeMounts:
             - name: config-volume
               mountPath: /etc/reviewer
+      initContainers:
+        - name: {{ .Chart.Name }}-load-db-schema
+          image: "liberoadmin/reviewer-xpub-postgres"
+          command: ["sh", "-c", "(psql -q -t -c \"select count(*) from information_schema.tables where table_schema='public';\" | xargs ) && psql -f  /docker-entrypoint-initdb.d/xpub-schema.sql"]
+          env:
+            - name: PGHOST
+              value: "{{ include "libero-reviewer.fullname" . }}-postgresql"
+            - name: PGPORT
+              value: "5432"
+            - name: PGUSER
+              value: "{{ .Values.postgresql.postgresqlUsername }}"
+            - name: PGPASSWORD
+              value: "{{ .Values.postgresql.postgresqlPassword }}"
+            - name: PGDATABASE
+              value: "{{ .Values.postgresql.postgresqlDatabase }}"
       volumes:
         - name: config-volume
           configMap:

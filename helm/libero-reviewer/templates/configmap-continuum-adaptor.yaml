@@ -21,7 +21,7 @@ data:
             "client": "pg",
             "connection": {
                 "host": "{{ include "libero-reviewer.fullname" . }}-postgresql",
-                "username": "{{ .Values.postgresql.postgresqlUsername }}",
+                "user": "{{ .Values.postgresql.postgresqlUsername }}",
                 "database": "{{ .Values.postgresql.postgresqlDatabase }}",
                 "password": "{{ .Values.postgresql.postgresqlPassword }}",
                 "port": 5432

@@ -43,6 +43,9 @@ rabbitmq:
 continuumLogin:
   url: "http://localhost"
 
+submission:
+  port: 3000
+
 continuumAdaptor:
   port: 3001
   continuumApiUrl: "http://continuum.gateway.url"

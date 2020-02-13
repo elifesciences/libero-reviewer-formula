@@ -10,14 +10,14 @@ metadata:
 data:
   config.public.json: |
     {
-        "client_login_url": "https://{{ include "libero-reviewer.fullname" . }}.elifesciences.org/submit",
+        "client_login_url": "{{ .Values.continuumLogin.url }}",
         "client_api_url": "https://{{ include "libero-reviewer.fullname" . }}.elifesciences.org"
     }
   config.infra.json: |
     {
         "port": 9000,
-        "client_api_proxy_url": "http://{{ include "libero-reviewer.fullname" . }}-continuum-adaptor",
-        "client_token_exchange_proxy_url":  "http://{{ include "libero-reviewer.fullname" . }}-continuum-adaptor/authenticate/",
+        "client_api_proxy_url": "http://{{ include "libero-reviewer.fullname" . }}-submission:{{ .Values.submission.port }}/graphql",
+        "client_token_exchange_proxy_url":  "http://{{ include "libero-reviewer.fullname" . }}-continuum-adaptor:{{ .Values.continuumAdaptor.port }}/authenticate/",
         "new_relic_client_license_key": "",
         "new_relic_client_app_id": ""
     }

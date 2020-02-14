@@ -1,6 +1,6 @@
 continuumLogin:
   url: "https://continuumtest--cdn-journal.elifesciences.org/submit"
 
-continuumAuth:
+continuumAdaptor:
   port: 3001
   continuumApiUrl: "http://continuumtest--gateway.elife.internal"

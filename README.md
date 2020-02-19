@@ -17,28 +17,28 @@ helm dependency build ./helm/libero-reviewer
 
 ## Operate
 
-Note: Change the 'libero-reviewer--staging' to your chosen release name
+Note: Change the 'staging' to your chosen release name
 
 To deploy a new release:
 
 ```sh
-helm install --name libero-reviewer--staging ./helm/libero-reviewer -f environments/staging.yaml
+./formula install staging
 ```
 
 Update a release:
 
 ```sh
-helm upgrade libero-reviewer--staging ./helm/libero-reviewer -f environments/staging.yaml
+./formula upgrade staging
 ```
 
 Get the status:
 ```sh
-helm status libero-reviewer--staging
+./formula status staging
 ```
 
 Delete a release:
 ```sh
-helm del --purge libero-reviewer--staging
+./formula delete staging
 ```
 
 ## Secrets

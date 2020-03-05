@@ -45,6 +45,8 @@ continuumLogin:
 
 submission:
   port: 3000
+  scienceBeam:
+    timeout: 20000
 
 continuumAdaptor:
   port: 3001

@@ -17,7 +17,7 @@ data:
     {
         "port": 9000,
         "client_api_proxy_url": "http://{{ include "libero-reviewer.fullname" . }}-submission:{{ .Values.submission.port }}/graphql",
-        "client_token_exchange_proxy_url":  "http://{{ include "libero-reviewer.fullname" . }}-continuum-adaptor:{{ .Values.continuumAdaptor.port }}/authenticate/",
+        "client_token_exchange_proxy_url":  "http://{{ include "libero-reviewer.fullname" . }}-continuum-adaptor/authenticate/",
         "new_relic_client_license_key": "",
         "new_relic_client_app_id": ""
     }

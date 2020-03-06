@@ -11,6 +11,8 @@ data:
   config.json: |
     {
       "port": 3000,
+      "max_ql_complexity": 100,
+      "max_ql_depth": 5,
       "knex": {
           "client": "pg",
           "connection": {
@@ -19,12 +21,10 @@ data:
               "user": "{{ .Values.postgresql.postgresqlUsername }}",
               "password": "{{ .Values.postgresql.postgresqlPassword }}",
               "port": 5432,
-              "max_ql_complexity": 100,
-              "max_ql_depth": 5
           }
       },
       "authentication_jwt_secret": "{{ .Values.continuumAdaptor.authenticationJwtSecret }}",
-      "user_adapter_url": "http://{{ include "libero-reviewer.fullname" . }}-continuum-adaptor",
+      "user_adapter_url": "http://{{ include "libero-reviewer.fullname" . }}-continuum-adaptor/current-user",
       "science_beam": {
         "api_url": "{{ .Values.submission.scienceBeam.apiUrl }}",
         "timeout": {{ .Values.submission.scienceBeam.timeout }}

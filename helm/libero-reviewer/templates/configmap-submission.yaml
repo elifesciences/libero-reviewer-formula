@@ -20,7 +20,7 @@ data:
               "database": "{{ .Values.postgresql.postgresqlDatabase }}",
               "user": "{{ .Values.postgresql.postgresqlUsername }}",
               "password": "{{ .Values.postgresql.postgresqlPassword }}",
-              "port": 5432,
+              "port": 5432
           }
       },
       "authentication_jwt_secret": "{{ .Values.continuumAdaptor.authenticationJwtSecret }}",

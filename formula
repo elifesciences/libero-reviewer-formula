@@ -32,7 +32,7 @@ then
 
     helm upgrade --install libero-reviewer--$2 ./helm/libero-reviewer -f environments/$2.yaml \
 --wait \
---timeout 120 \
+--timeout 240 \
 --recreate-pods \
 --set \
 continuumAdaptor.continuumJwtSecret="$continuumJwtSecret",\

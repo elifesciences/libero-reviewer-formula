@@ -46,7 +46,12 @@ continuumLogin:
 submission:
   port: 3000
   scienceBeam:
+    api_url: ""
     timeout: 20000
+  aws:
+    accessKeyId: ""
+    secretAccessKey: ""
+    s3Bucket: ""
 
 continuumAdaptor:
   port: 3001

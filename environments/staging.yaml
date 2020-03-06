@@ -9,6 +9,4 @@ submission:
   scienceBeam:
     apiUrl: "https://sciencebeam-texture.elifesciences.org/api/convert"
   aws:
-    accessKeyId: ""
-    secretAccessKey: ""
     s3Bucket: "staging-libero-reviewer"

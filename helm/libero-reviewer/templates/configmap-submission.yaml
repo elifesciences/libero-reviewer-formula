@@ -27,7 +27,7 @@ data:
       "user_adapter_url": "http://{{ include "libero-reviewer.fullname" . }}-continuum-adaptor",
       "science_beam": {
         "api_url": "{{ .Values.submission.scienceBeam.apiUrl }}",
-        "timeout": "{{ .Values.submission.scienceBeam.timeout }}"
+        "timeout": {{ .Values.submission.scienceBeam.timeout }}
       },
       "s3": {
         "accessKeyId": "{{ .Values.submission.aws.accessKeyId }}",

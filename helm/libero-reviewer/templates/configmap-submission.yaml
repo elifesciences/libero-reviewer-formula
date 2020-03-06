@@ -24,5 +24,16 @@ data:
           }
       },
       "authentication_jwt_secret": "{{ .Values.continuumAdaptor.authenticationJwtSecret }}",
-      "user_adapter_url": "http://{{ include "libero-reviewer.fullname" . }}-continuum-adaptor"
+      "user_adapter_url": "http://{{ include "libero-reviewer.fullname" . }}-continuum-adaptor",
+      "science_beam": {
+        "api_url": "{{ .Values.submission.scienceBeam.apiUrl }}",
+        "timeout": {{ .Values.submission.scienceBeam.timeout }}
+      },
+      "s3": {
+        "accessKeyId": "{{ .Values.submission.aws.accessKeyId }}",
+        "secretAccessKey": "{{ .Values.submission.aws.secretAccessKey }}",
+        "s3ForcePathStyle": true,
+        "fileBucket": "{{ .Values.submission.aws.s3Bucket }}",
+        "awsEndPoint": false
+      }
     }

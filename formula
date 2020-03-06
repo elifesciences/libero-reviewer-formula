@@ -27,14 +27,18 @@ then
     secrets=$(kubectl get secret libero-reviewer--$2 -o json);
     continuumJwtSecret=$(echo $secrets | jq -r .data.continuumJwtSecret | base64 -d);
     authenticationJwtSecret=$(echo $secrets | jq -r .data.authenticationJwtSecret | base64 -d);
-    installFlag=""
+    awsAccessKeyId=$(echo $secrets | jq -r .data.awsAccessKeyId | base64 -d);
+    awsSecretAccessKey=$(echo $secrets | jq -r .data.awsSecretAccessKey | base64 -d);
 
     helm upgrade --install libero-reviewer--$2 ./helm/libero-reviewer -f environments/$2.yaml \
 --wait \
 --timeout 120 \
+--recreate-pods \
 --set \
 continuumAdaptor.continuumJwtSecret="$continuumJwtSecret",\
-continuumAdaptor.authenticationJwtSecret="$authenticationJwtSecret";
+continuumAdaptor.authenticationJwtSecret="$authenticationJwtSecret",\
+submission.aws.accessKeyId="$awsAccessKeyId",\
+submission.aws.secretAccessKey="$awsSecretAccessKey"
 
     exit;
 fi

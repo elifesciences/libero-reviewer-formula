@@ -45,6 +45,7 @@ continuumLogin:
 
 submission:
   port: 3000
+  maxFileSizeInBytes: 100000000
   scienceBeam:
     api_url: ""
     timeout: 20000

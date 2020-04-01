@@ -38,7 +38,7 @@ data:
         "awsEndPoint": false
       }
     }
-  config.public.json: |
+  config.client.json: |
     {
       "client": {
         "majorSubjectAreas": {

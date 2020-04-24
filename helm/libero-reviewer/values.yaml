@@ -61,5 +61,5 @@ continuumAdaptor:
   continuumJwtSecret: "some_secret_from_journal"
   authenticationJwtSecret: "super_secret_jam"
   elifeApiGatewaySecret:
-    name: "continuumAdaptor-elife-token"
+    name: "continuum-adaptor--elife-token"
     key: "token"

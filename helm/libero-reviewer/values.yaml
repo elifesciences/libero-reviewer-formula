@@ -60,3 +60,6 @@ continuumAdaptor:
   database: "reviewer_continuum_adaptor"
   continuumJwtSecret: "some_secret_from_journal"
   authenticationJwtSecret: "super_secret_jam"
+  elifeApiGatewaySecret:
+    name: "continuumAdaptor-elife-token"
+    key: "token"

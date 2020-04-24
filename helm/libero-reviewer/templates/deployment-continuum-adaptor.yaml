@@ -30,6 +30,12 @@ spec:
             - name: http
               containerPort: {{ .Values.continuumAdaptor.port }}
               protocol: TCP
+          env:
+            - name: ELIFE_API_GATEWAY_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.continuumAdaptor.elifeApiGatewaySecret.name }}
+                  key: {{ .Values.continuumAdaptor.elifeApiGatewaySecret.key }}
           volumeMounts:
             - name: config-volume
               mountPath: /etc/reviewer
